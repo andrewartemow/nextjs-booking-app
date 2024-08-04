@@ -5,3 +5,10 @@
 body {
     overflow-x: hidden;
 }
+
+@media (max-width: 640px) {
+    .swiper-slide {
+        display: flex !important;
+        justify-content: center;
+    }
+}
