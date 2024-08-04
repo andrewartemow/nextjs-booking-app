@@ -6,16 +6,17 @@ import SecondaryButton from '../SecondaryButton/SecondaryButton'
 
 interface DropdownButton {
     children: ReactNode,
-    list: string[]
+    list: string[],
+    className?: string,
 }
 
-const DropdownButton = ({ children, list }: DropdownButton) => {
+const DropdownButton = ({ children, list, className }: DropdownButton) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [selectedProperty, setSelectedProperty] = useState('');
 
     return (
-        <div className='relative w-48'>
+        <div className={`relative w-48 ${className}`}>
             <SecondaryButton className="bg-general flex items-center justify-between gap-4 border-[1px] w-full py-[11px]" onClick={() => setIsOpen(!isOpen)}>
                 {selectedProperty ? selectedProperty : children} <img src="/assets/icons/arrow-down.png" width={15} alt="icon" />
             </SecondaryButton>

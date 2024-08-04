@@ -15,10 +15,10 @@ import CustomInput from "@/components/CustomInput/CustomInput";
 export default function Home() {
   return (
     <main>
-      <Section height="screen" className="pt-52 lg:pt-28">
+      <Section height="auto" className="py-36 lg:py-28">
         <Container>
           <div className="flex gap-10">
-            <div className="flex flex-col text-center mx-auto gap-2 justify-center w-[40rem] pt-10 lg:w-1/2 lg:text-left lg:pt-0">
+            <div className="flex flex-col text-center mx-auto gap-5 justify-center w-[40rem] pt-10 lg:w-1/2 lg:text-left lg:pt-0 lg:gap-2">
               <Heading type="h1">Modern living<br />for everyone</Heading>
               <SubHeadline>We provide a complete service for the sale, purchase or rental of real estate. We have been operating in Madrid and Barcelona more than 15 years.</SubHeadline>
               <LocationForm />

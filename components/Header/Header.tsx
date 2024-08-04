@@ -33,7 +33,7 @@ const Header = () => {
                             </ul>
                         </nav>}
                     </div>
-                    <div className='flex items-center gap-10' >
+                    <div className='flex items-center gap-5' >
                         {isMobile && <>
                             <div className="w-6 h-6 flex flex-col justify-between relative" onClick={() => setIsDropDownMeneOpen(!isDropDownMeneOpen)}>
                                 <span className='w-full h-1 bg-dark-blue'></span>
