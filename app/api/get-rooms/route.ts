@@ -8,9 +8,19 @@ export async function GET(request: Request) {
   // const location = searchParams.get('location');
   // const description = searchParams.get('description');
   // const image = searchParams.get('image');
+
   try {
-    const rooms = await sql`SELECT * FROM Rooms`;
-    return NextResponse.json({ rooms }, { status: 200 });
+    const headers = new Headers();
+    headers.set(
+      'Cache-Control',
+      'no-store, no-cache, must-revalidate, proxy-revalidate'
+    );
+    headers.set('Pragma', 'no-cache');
+    headers.set('Expires', '0');
+
+    const rooms = await sql`SELECT * FROM rooms`;
+
+    return NextResponse.json({ rooms }, { status: 200, headers: headers });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
