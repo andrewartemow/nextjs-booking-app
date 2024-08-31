@@ -9,7 +9,6 @@ import SubHeadline from "@/components/SubHeadline/SubHeadline";
 import Section from "@/components/Section/Section";
 import LocationForm from "@/components/LocationForm/LocationForm";
 import SecondaryButton from "@/components/SecondaryButton/SecondaryButton";
-import Card from "@/components/RoomCard/RoomCard";
 import Slider from "@/components/Slider/Slider";
 import Paragraph from "@/components/Paragraph/Paragraph";
 import MemberCard from "@/components/MemberCard/MemberCard";
@@ -22,7 +21,9 @@ export default async function Home() {
     rooms = await fetch('http://localhost:3000/api/get-rooms', {
       method: 'GET',
       cache: 'no-store',
-    }).then((res) => res.json()).then(data => data.rooms.rows);
+    }).then((res) => res.json()).then(data => {
+      if (data.rooms) return data.rooms.rows
+    });
   } catch (err) {
     console.error(err);
   }
@@ -110,7 +111,6 @@ export default async function Home() {
             </div>
           </div>
         </Container>
-        <img src="http://localhost:3000/9add53a5-16ad-4506-8f0e-f9d6a88cb193" alt=":(" />
       </Section>
     </main>
   );
