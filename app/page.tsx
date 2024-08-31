@@ -49,7 +49,7 @@ export default async function Home() {
               </SecondaryButton>
             </div>
           </div>
-          <Slider rooms={rooms} />
+          {rooms && rooms.length ? <Slider rooms={rooms} /> : <Heading type="h2">Failed to load</Heading>}
         </Container>
       </Section>
       <Section height="auto" className="py-20 h-auto">

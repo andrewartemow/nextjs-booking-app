@@ -13,6 +13,6 @@ export async function GET(request: Request) {
   //   } catch (error) {
   //     return NextResponse.json({ error }, { status: 500 });
   //   }
-  // const rooms = await sql`SELECT * FROM rooms;`;
-  // return NextResponse.json({ rooms }, { status: 200 });
+  const rooms = await sql`SELECT * FROM rooms;`;
+  return NextResponse.json({ rooms }, { status: 200 });
 }
