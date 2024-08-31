@@ -19,7 +19,10 @@ export default async function Home() {
   let rooms = [];
 
   try {
-    rooms = await fetch('http://localhost:3000/api/get-rooms').then((res) => res.json()).then(data => data.rooms.rows);
+    rooms = await fetch('http://localhost:3000/api/get-rooms', {
+      method: 'GET',
+      cache: 'no-store',
+    }).then((res) => res.json()).then(data => data.rooms.rows);
   } catch (err) {
     console.error(err);
   }
