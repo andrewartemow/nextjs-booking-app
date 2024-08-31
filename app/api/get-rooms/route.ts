@@ -8,11 +8,10 @@ export async function GET(request: Request) {
   // const location = searchParams.get('location');
   // const description = searchParams.get('description');
   // const image = searchParams.get('image');
-  //   try {
-  //     const res = await sql`SELECT * FROM Rooms`;
-  //   } catch (error) {
-  //     return NextResponse.json({ error }, { status: 500 });
-  //   }
-  const rooms = await sql`SELECT * FROM rooms;`;
-  return NextResponse.json({ rooms }, { status: 200 });
+  try {
+    const rooms = await sql`SELECT * FROM Rooms`;
+    return NextResponse.json({ rooms }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
 }
