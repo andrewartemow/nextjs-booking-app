@@ -16,7 +16,13 @@ import MemberCard from "@/components/MemberCard/MemberCard";
 import CustomInput from "@/components/CustomInput/CustomInput";
 
 export default async function Home() {
-  const rooms = await fetch('http://localhost:3000/api/get-rooms').then((res) => res.json()).then(data => data.rooms.rows);
+  let rooms = [];
+
+  try {
+    rooms = await fetch('http://localhost:3000/api/get-rooms').then((res) => res.json()).then(data => data.rooms.rows);
+  } catch (err) {
+    console.error(err);
+  }
 
   return (
     <main>
