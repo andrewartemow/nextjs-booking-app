@@ -7,8 +7,12 @@ import "swiper/css";
 
 import RoomCard from '../RoomCard/RoomCard';
 
+interface SliderProps {
+    rooms: { room_id: number, title: string, price: number, location: string, description: string, image: { data: ArrayBuffer, type: string } }[]
+}
 
-const Slider = () => {
+
+const Slider = ({ rooms }: SliderProps) => {
     return (
         <div className="flex gap-5">
             <Swiper
@@ -34,11 +38,7 @@ const Slider = () => {
                     },
                 }}
             >
-                <SwiperSlide style={{ "width": "20rem" }}><RoomCard /></SwiperSlide>
-                <SwiperSlide style={{ "width": "20rem" }}><RoomCard /></SwiperSlide>
-                <SwiperSlide style={{ "width": "20rem" }}><RoomCard /></SwiperSlide>
-                <SwiperSlide style={{ "width": "20rem" }}><RoomCard /></SwiperSlide>
-                <SwiperSlide style={{ "width": "20rem" }}><RoomCard /></SwiperSlide>
+                {rooms.map(room => <SwiperSlide key={room.room_id} style={{ "width": "20rem" }}><RoomCard room={room} /></SwiperSlide>)}
             </Swiper>
         </div>
     )

@@ -1,3 +1,6 @@
+import fs from "fs";
+import path from 'path';
+
 import Image from "next/image";
 
 import Container from "@/components/Container/Container";
@@ -12,7 +15,9 @@ import Paragraph from "@/components/Paragraph/Paragraph";
 import MemberCard from "@/components/MemberCard/MemberCard";
 import CustomInput from "@/components/CustomInput/CustomInput";
 
-export default function Home() {
+export default async function Home() {
+  const rooms = await fetch('http://localhost:3000/api/get-rooms').then((res) => res.json()).then(data => data.rooms.rows);
+
   return (
     <main>
       <Section height="auto" className="py-36 lg:py-28">
@@ -44,7 +49,7 @@ export default function Home() {
               </SecondaryButton>
             </div>
           </div>
-          <Slider />
+          <Slider rooms={rooms} />
         </Container>
       </Section>
       <Section height="auto" className="py-20 h-auto">
@@ -96,6 +101,7 @@ export default function Home() {
             </div>
           </div>
         </Container>
+        <img src="http://localhost:3000/9add53a5-16ad-4506-8f0e-f9d6a88cb193" alt=":(" />
       </Section>
     </main>
   );
