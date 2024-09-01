@@ -1,21 +1,29 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 
 import Container from '../Container/Container'
 import Logo from '../Logo/Logo'
 import PrimaryButton from '../PrimaryButton/PrimaryButton'
 
-const breakpoint = 768 as number;
-
 const Header = () => {
-    const [isMobile, setIsMobile] = useState(false);
     const [isDropDownMeneOpen, setIsDropDownMeneOpen] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false);
 
-    useEffect(() => {
-        setIsMobile((window as Window).innerWidth <= breakpoint)
-    })
+    const toggleDropdown = () => {
+        if (isDropDownMeneOpen) {
+            // Start closing animation
+            setIsAnimating(true);
+            setTimeout(() => {
+                setIsAnimating(false);
+                setIsDropDownMeneOpen(false);
+            }, 280); // Match this duration with the fadeOut animation
+        } else {
+            // Open the dropdown
+            setIsDropDownMeneOpen(true);
+        }
+    };
 
     return (
         <header className="w-full py-10 absolute top-0 left-0 bg-general">
@@ -23,7 +31,7 @@ const Header = () => {
                 <div className='flex items-center justify-between'>
                     <div className="flex items-center gap-10">
                         <Logo imageUrl="/assets/logo.png" />
-                        {!isMobile && <nav>
+                        <nav className='hidden lg:block'>
                             <ul className="flex items-center gap-5">
                                 <Link href="#">Top offers</Link>
                                 <Link href="#">Search in offers</Link>
@@ -31,23 +39,28 @@ const Header = () => {
                                 <Link href="#">About us</Link>
                                 <Link href="#">Our team</Link>
                             </ul>
-                        </nav>}
+                        </nav>
                     </div>
                     <div className='flex items-center gap-5' >
-                        {isMobile && <>
-                            <div className="w-6 h-6 flex flex-col justify-between relative" onClick={() => setIsDropDownMeneOpen(!isDropDownMeneOpen)}>
+                        <>
+                            <div className="lg:hidden w-6 h-6 flex flex-col justify-between relative" onClick={toggleDropdown}>
                                 <span className='w-full h-1 bg-dark-blue'></span>
                                 <span className='w-full h-1 bg-dark-blue'></span>
                                 <span className='w-full h-1 bg-dark-blue'></span>
                             </div>
-                            {isDropDownMeneOpen && <ul className="flex flex-col items-center gap-5 shadow-md p-5 rounded-md absolute z-50 top-[6rem] right-[6rem] bg-general">
-                                <Link href="#">Top offers</Link>
-                                <Link href="#">Search in offers</Link>
-                                <Link href="#">References</Link>
-                                <Link href="#">About us</Link>
-                                <Link href="#">Our team</Link>
-                            </ul>}
-                        </>}
+                            {(isDropDownMeneOpen || isAnimating) && <div className={`bg-general w-screen absolute z-50 top-[6rem] right-0 p-5 ${isDropDownMeneOpen && !isAnimating
+                                ? 'animate-fadeIn'
+                                : 'animate-fadeOut'
+                                }`}>
+                                <ul className="flex flex-col items-center gap-5">
+                                    <Link href="#">Top offers</Link>
+                                    <Link href="#">Search in offers</Link>
+                                    <Link href="#">References</Link>
+                                    <Link href="#">About us</Link>
+                                    <Link href="#">Our team</Link>
+                                </ul>
+                            </div>}
+                        </>
                         <PrimaryButton>
                             Contact us
                         </PrimaryButton>
