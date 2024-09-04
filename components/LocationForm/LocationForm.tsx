@@ -1,19 +1,14 @@
-'use client'
-
-import React, { FormEvent } from 'react'
+import React from 'react'
 
 import DropdownButton from '../DropdownButton/DropdownButton'
 import CustomInput from '../CustomInput/CustomInput'
 import PrimaryButton from '../PrimaryButton/PrimaryButton'
+import Form from '../Form/Form'
 
 const LocationForm = () => {
 
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
-    }
-
     return (
-        <form className="flex flex-col items-center justify-center flex-wrap gap-2 p-5 bg-light-blue rounded-md lg:flex-row" onSubmit={handleSubmit}>
+        <Form>
             <DropdownButton list={["House", "Office", "Townhouse", "Flat"]} className="w-full lg:w-48">
                 Property Type
             </DropdownButton>
@@ -24,7 +19,7 @@ const LocationForm = () => {
             <PrimaryButton className="flex-1 w-full lg:w-auto" type="submit">
                 Search
             </PrimaryButton>
-        </form>
+        </Form>
     )
 }
 

@@ -8,7 +8,7 @@ interface SectionProps {
 
 const Section = ({ children, className, height }: SectionProps) => {
     return (
-        <section className={`h-${height} w-full ${className}`}>{children}</section>
+        <section className={`h-${height} w-full ${className ? className : ''}`}>{children}</section>
     )
 }
 

@@ -8,7 +8,7 @@ import "swiper/css";
 import RoomCard from '../RoomCard/RoomCard';
 
 interface SliderProps {
-    rooms: { room_id: number, title: string, price: number, location: string, description: string, image: { data: ArrayBuffer, type: string } }[]
+    rooms: { id: number, name: string, price: number, location: string, description: string, image: string }[]
 }
 
 
@@ -38,7 +38,7 @@ const Slider = ({ rooms }: SliderProps) => {
                     },
                 }}
             >
-                {rooms.map(room => <SwiperSlide key={room.room_id} style={{ "width": "20rem" }}><RoomCard room={room} /></SwiperSlide>)}
+                {rooms.map(room => <SwiperSlide key={room.id} style={{ "width": "20rem" }}><RoomCard room={room} /></SwiperSlide>)}
             </Swiper>
         </div>
     )

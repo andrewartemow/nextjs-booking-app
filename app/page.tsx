@@ -54,7 +54,7 @@ export default async function Home() {
               <SubHeadline className="text-center lg:text-left">Fulfill your career dreams, enjoy all the achievements of the city center and luxury housing to the fullest.</SubHeadline>
             </div>
             <div className="w-full flex justify-center lg:w-max">
-              <SecondaryButton className="mb-2">
+              <SecondaryButton className="mb-2" redirectTo="/offers">
                 Show all offers
               </SecondaryButton>
             </div>
@@ -89,25 +89,6 @@ export default async function Home() {
               <MemberCard imageUrl="/assets/profile-pic3.png" name="Randy Rosser" position="Marketing & Analytics" />
               <MemberCard imageUrl="/assets/profile-pic4.png" name="Haylie Donin" position="Manager" />
               <MemberCard imageUrl="/assets/profile-pic5.png" name="Miracle Bator" position="CEO" />
-            </div>
-          </div>
-        </Container>
-      </Section>
-      <Section height="auto" className="bg-light-blue py-20">
-        <Container>
-          <div className="flex justify-center items-center gap-10">
-            <div className="hidden lg:block">
-              <Image src="/assets/paper-plane.png" width={150}
-                height={0}
-                alt="failed to load" />
-            </div>
-            <div className="flex flex-col gap-1">
-              <Heading type="h4">Subscribe to newsletter</Heading>
-              <SubHeadline>Get the latest news and interesting offers and real estate</SubHeadline>
-              <div className="flex gap-4">
-                <CustomInput placeholder="Your email address" type="text" className="w-full" />
-                <SecondaryButton>Subscribe</SecondaryButton>
-              </div>
             </div>
           </div>
         </Container>

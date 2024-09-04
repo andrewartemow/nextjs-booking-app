@@ -8,7 +8,7 @@ interface CustomInputProps {
 
 const CustomInput = ({ type, placeholder, className }: CustomInputProps) => {
     return (
-        <input className={`text-base p-2 py-3 focus:outline-none rounded-md ${className}`} type={type} placeholder={`${placeholder ? placeholder : ""}`} />
+        <input className={`text-base px-5 py-3 focus:outline-none rounded-md ${className}`} type={type} placeholder={`${placeholder ? placeholder : ""}`} />
     )
 }
 
