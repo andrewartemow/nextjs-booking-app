@@ -2,7 +2,6 @@
 
 import React, { ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
-import { Url } from 'next/dist/shared/lib/router/router';
 
 interface SecondaryButtonProps {
     children: ReactNode,

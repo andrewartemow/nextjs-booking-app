@@ -5,7 +5,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import SubscribeForm from "@/components/SubscribeForm/SubscribeForm";
 
-const open_sans = Open_Sans({ subsets: ["latin"] });
+const open_sans = Open_Sans({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700", "800"] });
 
 export const metadata: Metadata = {
   title: "Booking Rooms",

@@ -4,7 +4,7 @@ import React, { FormEvent, ReactNode } from 'react'
 
 interface FormProps {
     children: ReactNode
-    className?: string
+    className?: string,
 }
 
 const Form = ({ children, className }: FormProps) => {

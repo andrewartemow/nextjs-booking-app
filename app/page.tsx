@@ -1,18 +1,17 @@
-import fs from "fs";
-import path from 'path';
-
 import Image from "next/image";
 
 import Container from "@/components/Container/Container";
 import Heading from "@/components/Heading/Heading";
 import SubHeadline from "@/components/SubHeadline/SubHeadline";
 import Section from "@/components/Section/Section";
-import LocationForm from "@/components/LocationForm/LocationForm";
 import SecondaryButton from "@/components/SecondaryButton/SecondaryButton";
 import Slider from "@/components/Slider/Slider";
 import Paragraph from "@/components/Paragraph/Paragraph";
 import MemberCard from "@/components/MemberCard/MemberCard";
-import CustomInput from "@/components/CustomInput/CustomInput";
+import Form from "@/components/Form/Form";
+import DropdownButton from "@/components/DropdownButton/DropdownButton";
+import SearchInput from "@/components/SearchInput/SearchInput";
+import PrimaryButton from "@/components/PrimaryButton/PrimaryButton";
 
 export default async function Home() {
   let rooms = [];
@@ -36,7 +35,26 @@ export default async function Home() {
             <div className="flex flex-col text-center mx-auto gap-5 justify-center w-[40rem] pt-10 lg:w-1/2 lg:text-left lg:pt-0 lg:gap-2">
               <Heading type="h1">Modern living<br />for everyone</Heading>
               <SubHeadline>We provide a complete service for the sale, purchase or rental of real estate. We have been operating in Madrid and Barcelona more than 15 years.</SubHeadline>
-              <LocationForm />
+              <Form>
+                <DropdownButton list={[
+                  "Paris",
+                  "Berlin",
+                  "Rome",
+                  "Madrid",
+                  "Amsterdam",
+                  "Vienna",
+                  "Prague",
+                  "Lisbon",
+                  "Budapest",
+                  "Copenhagen"
+                ]} type="location" className="w-full lg:w-48">
+                  Location
+                </DropdownButton>
+                <div className="flex w-full lg:w-min gap-2">
+                  <SearchInput className="w-full lg:w-min" placeholder='Enter key word' />
+                  <PrimaryButton redirectTo="/offers">Search</PrimaryButton>
+                </div>
+              </Form>
             </div>
             <div className="hidden lg:block lg:w-1/2">
               <Image src="/assets/hero-picture.png" width={0}

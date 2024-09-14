@@ -9,8 +9,6 @@ interface RoomCardProps {
 
 const RoomCard = ({ room }: RoomCardProps) => {
 
-    console.log(room.image);
-
     return (
         <div className="w-[20rem] h-[22rem] bg-general shadow-lg rounded-md overflow-hidden">
             <div className={`h-[12rem] bg-cover bg-no-repeat bg-center`} style={{ backgroundImage: `url('${room.image}')` }}></div>

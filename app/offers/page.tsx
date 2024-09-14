@@ -4,24 +4,47 @@ import Section from '@/components/Section/Section'
 import Heading from '@/components/Heading/Heading';
 import SubHeadline from '@/components/SubHeadline/SubHeadline';
 import Container from '@/components/Container/Container';
-import CustomInput from '@/components/CustomInput/CustomInput';
 import Form from '@/components/Form/Form';
 import PrimaryButton from '@/components/PrimaryButton/PrimaryButton';
 import DropdownButton from '@/components/DropdownButton/DropdownButton';
 import RoomCard from '@/components/RoomCard/RoomCard';
+import SearchInput from '@/components/SearchInput/SearchInput';
+import Image from 'next/image';
 
-const Offers = async () => {
+const Offers = async ({ searchParams }: {
+    searchParams?: {
+        name?: string,
+        // page?: string
+    }
+}) => {
+
+    const name = searchParams?.name || '';
+    console.log(name);
+
     let rooms = [];
 
-    try {
-        rooms = await fetch('http://localhost:3000/api/get-rooms', {
-            method: 'GET',
-            cache: 'no-store',
-        }).then((res) => res.json()).then(data => {
-            if (data.rooms) return data.rooms.rows
-        });
-    } catch (err) {
-        console.error(err);
+    if (name) {
+        try {
+            rooms = await fetch(`http://localhost:3000/api/search-rooms${name ? `?name=${name}` : ''}`, {
+                method: 'GET',
+                cache: 'no-store',
+            }).then((res) => res.json()).then(data => {
+                if (data.rooms) return data.rooms.rows
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    } else {
+        try {
+            rooms = await fetch('http://localhost:3000/api/get-rooms', {
+                method: 'GET',
+                cache: 'no-store',
+            }).then((res) => res.json()).then(data => {
+                if (data.rooms) return data.rooms.rows
+            });
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return (
@@ -33,9 +56,10 @@ const Offers = async () => {
                         <SubHeadline>Choose from the most advantageous offers</SubHeadline>
                     </div>
                     <Form className="relative w-screen left-1/2 -translate-x-1/2 py-[2rem]">
-                        <div className="flex items-center gap-3">
-                            <CustomInput type="text" placeholder="Enter key words" />
-                            <PrimaryButton>Search</PrimaryButton>
+                        <div className="w-full lg:w-min flex items-center justify-center gap-3 bg-general rounded-md pr-5">
+                            <SearchInput className="w-full lg:w-96" placeholder='Enter key words' />
+                            <Image className="" src="/assets/icons/search-icon.svg" width={30} height={30} alt='icon' />
+                            {/* <PrimaryButton>Search</PrimaryButton> */}
                         </div>
                         <div className="flex items-center justify-center py-4 bg-gray-50 w-full">
                             <div className="flex-grow border-t border-[#bdbdbd]"></div>
@@ -43,7 +67,7 @@ const Offers = async () => {
                             <div className="flex-grow border-t border-[#bdbdbd]"></div>
                         </div>
                         <div className='w-full lg:w-auto flex flex-col lg:flex-row items-center gap-3'>
-                            <DropdownButton list={["From high to low prices", "From low to high prices"]} className="w-full lg:w-auto">Price Filter</DropdownButton>
+                            <DropdownButton type="price_filter" list={["From high to low prices", "From low to high prices"]} className="w-full lg:w-auto">Price Filter</DropdownButton>
                             <DropdownButton list={[
                                 "Paris",
                                 "Berlin",
@@ -55,10 +79,10 @@ const Offers = async () => {
                                 "Lisbon",
                                 "Budapest",
                                 "Copenhagen"
-                            ]} className="w-full lg:w-auto">Location</DropdownButton>
-                            <DropdownButton list={["1 room", "2 rooms", "3 rooms"]} className="w-full lg:w-auto">Amount of Room</DropdownButton>
+                            ]} type="location" className="w-full lg:w-auto">Location</DropdownButton>
+                            <DropdownButton type='rooms_amount' list={["1 room", "2 rooms", "3 rooms"]} className="w-full lg:w-auto">Amount of Room</DropdownButton>
                         </div>
-                        <div className="flex flex-col items-center justify-center bg-gray-50 w-full">
+                        {/* <div className="flex flex-col items-center justify-center bg-gray-50 w-full">
                             <div className="w-full max-w-lg px-4">
                                 <input type="range" min="0" max="980000" value="0" className="w-full h-2 bg-blue-200 rounded-full appearance-none cursor-pointer focus:outline-none focus:ring-0 focus:shadow-none" />
                                 <div className="flex justify-between mt-2 text-gray-700">
@@ -66,7 +90,7 @@ const Offers = async () => {
                                     <span>980 000 €</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </Form>
                 </Container>
             </Section>
